@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head></head>
+<body>
+    <canvas width="600" height="600"></canvas>
+    <script type="text/javascript">
+        var c = document.querySelector("canvas");
+        var ctx = c.getContext("2d");    
+        
+        //Get image data
+        var data = ctx.getImageData(0,0,400,400);
+        
+        function paintPattens(imageData){
+        var numPixels = imageData.data.length / 4;
+        for(var i = 0; i< numPixels; i++){
+        if(i %10 ==0){
+            imageData.data[i * 5 + 1] = 255; //change the values to get different lines
+            imageData.data[i * 5 + 3] = 255;
+            }
+        }
+            ctx.putImageData(imageData,0,0);
+        }
+        paintPattens(data);
+    </script>
+</body>
+</html>
